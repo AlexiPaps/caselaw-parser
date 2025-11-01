@@ -4,5 +4,6 @@ import { CaseLawResolver } from './caselaw.resolver';
 
 @Module({
   providers: [CaseLawResolver, CaseLawService],
+  exports: [CaseLawService]
 })
 export class CaseLawModule { }

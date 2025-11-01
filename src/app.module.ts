@@ -5,6 +5,7 @@ import { ConfigModule } from '@nestjs/config';
 import { PrismaModule } from './prisma/prisma.module';
 import { CaseLawModule } from './caselaw/caselaw.module';
 import { join } from 'path';
+import { UploadModule } from './upload/upload.module';
 
 @Module({
   imports: [
@@ -15,9 +16,11 @@ import { join } from 'path';
       sortSchema: true,
       playground: true,
       context: ({ req }) => ({ req }),
+      csrfPrevention: false,
     }),
     PrismaModule,
     CaseLawModule,
+    UploadModule
   ],
 })
 

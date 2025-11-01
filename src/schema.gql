@@ -32,9 +32,13 @@ scalar DateTime
 
 type Mutation {
   createCaseLaw(createCaseLawInput: CreateCaseLawInput!): CaseLaw!
+  uploadCaseLaw(file: Upload!): CaseLaw!
 }
 
 type Query {
   caseLaw(id: String!): CaseLaw!
   caseLawByCaseNumberAndDate(caseNumber: Float!, dateOfDecision: String!): CaseLaw
 }
+
+"""The `Upload` scalar type represents a file upload."""
+scalar Upload
