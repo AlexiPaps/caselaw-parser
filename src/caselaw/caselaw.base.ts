@@ -1,4 +1,4 @@
-import { Field, Int, ObjectType, InputType } from '@nestjs/graphql';
+import { Field, ObjectType, InputType } from '@nestjs/graphql';
 
 @ObjectType()
 @InputType('CaseLawBaseInput')
@@ -18,8 +18,8 @@ export class CaseLawBase {
     @Field()
     court: string;
 
-    @Field(() => Int)
-    caseNumber: number;
+    @Field()
+    caseNumber: string;
 
     @Field()
     summary: string;

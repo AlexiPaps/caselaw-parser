@@ -11,7 +11,7 @@ export class AiService {
             dateOfDecision: new Date(),
             office: 'Mock Office',
             court: 'Mock Court',
-            caseNumber: 1,
+            caseNumber: "1",
             summary: 'Mock summary',
         };
     }

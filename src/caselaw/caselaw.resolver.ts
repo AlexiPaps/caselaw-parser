@@ -12,6 +12,11 @@ export class CaseLawResolver {
         return this.caseLawService.create(createCaseLawInput);
     }
 
+    @Query(() => [CaseLaw], { name: 'caseLaws' })
+    findAll() {
+        return this.caseLawService.findAll();
+    }
+
     @Query(() => CaseLaw, { name: 'caseLaw' })
     findOne(@Args('id', { type: () => String }) id: string) {
         return this.caseLawService.findOne(id);
@@ -27,7 +32,7 @@ export class CaseLawResolver {
     // And I could use findUnique instead of findFirst in caselaw.service
     @Query(() => CaseLaw, { name: 'caseLawByCaseNumberAndDate', nullable: true })
     findUniqueByCaseNumberAndDate(
-        @Args('caseNumber', { type: () => Number }) caseNumber: number,
+        @Args('caseNumber', { type: () => String }) caseNumber: string,
         @Args('dateOfDecision', { type: () => String }) dateOfDecision: string,
     ) {
         return this.caseLawService.findUniqueByCaseNumberAndDate(caseNumber, dateOfDecision);

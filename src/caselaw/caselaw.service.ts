@@ -12,11 +12,17 @@ export class CaseLawService {
         });
     }
 
+    async findAll() {
+        return this.prisma.caseLaw.findMany({
+            orderBy: { createdAt: 'desc' }
+        });
+    }
+
     async findOne(id: string) {
         return this.prisma.caseLaw.findUnique({ where: { id } });
     }
 
-    async findUniqueByCaseNumberAndDate(caseNumber: number, dateOfDecision: string) {
+    async findUniqueByCaseNumberAndDate(caseNumber: string, dateOfDecision: string) {
         return this.prisma.caseLaw.findFirst({
             where: {
                 caseNumber,
