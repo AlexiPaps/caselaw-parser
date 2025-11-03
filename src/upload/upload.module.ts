@@ -1,12 +1,12 @@
 import { Module } from '@nestjs/common';
 import { UploadResolver } from './upload.resolver';
 import { UploadService } from './upload.service';
-import { PdfService } from '../utils/pdf.service';
-import { AiService } from '../utils/ai.service';
+import { FileParserModule } from '../file-parser/file-parser.module';
+import { AiModule } from '../ai/ai.module';
 import { CaseLawModule } from '../caselaw/caselaw.module';
 
 @Module({
-    imports: [CaseLawModule],
-    providers: [UploadResolver, UploadService, PdfService, AiService],
+    imports: [FileParserModule, AiModule, CaseLawModule],
+    providers: [UploadResolver, UploadService],
 })
 export class UploadModule { }
