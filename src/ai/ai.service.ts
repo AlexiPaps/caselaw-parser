@@ -1,5 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import OpenAI from 'openai';
+import { toDateIsoString } from 'src/utils/dateFormat.util';
 
 @Injectable()
 export class AiService {
@@ -81,14 +82,13 @@ Text:
 
         // make sure the decision date is iso datetime
         const input = metadata.dateOfDecision;
-        const iso = new Date(input.replace(/(\d+)\/([A-Z]{3})\/(\d{4})/, '$1 $2 $3') + ' UTC').toISOString();
-        metadata.dateOfDecision = iso;
+        metadata.dateOfDecision = toDateIsoString(input);
 
         const result = {
             ...metadata,
             summary
         }
-        console.log('result: ', result)
+        console.log('result: ', result);
 
         return result;
     }
