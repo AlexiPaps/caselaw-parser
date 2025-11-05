@@ -148,7 +148,7 @@ Key considerations before going to production:
 - Version prompts to ensure reproducibility of AI-driven extraction.
 - Configure regular backups.  
 - Add better error handling and logging.
-- Collect metrics for uload success/failure, AI latency and DB query performance.
+- Collect metrics for upload success/failure, AI latency and DB query performance.
 - Add unit tests, simulations for uploads and GraphQL mutations and automated test of the complete flow: Upload → AI → Database.
 - Caching repeated AI results
 
