@@ -143,13 +143,12 @@ Key considerations before going to production:
 - Authentication and authorization to protect endpoints.
 - Store uploaded files in dedicated storage rather than local folder.
 - Add OCR for pdf files that are not text based.
-- Add retry logic and error handling for AI API requests.  
+- Add retry logic for AI API requests.  
 - Implement caching for identical or repeated requests.  
 - Version prompts to ensure reproducibility of AI-driven extraction.
 - Configure regular backups.  
 - Add better error handling and logging.
 - Collect metrics for upload success/failure, AI latency and DB query performance.
-- Add unit tests, simulations for uploads and GraphQL mutations and automated test of the complete flow: Upload → AI → Database.
-- Caching repeated AI results
+- Add unit tests, integration tests and automated E2E tests of the complete flow: Upload → Parse → AI → Query Database.
 
 ---

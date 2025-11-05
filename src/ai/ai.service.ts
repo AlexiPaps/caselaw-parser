@@ -61,7 +61,7 @@ Text:
                 {
                     role: "system",
                     content: `You are given summaries of different sections of a legal/administrative document.
-                        Create ONE concise, coherent summary (4–8 sentences) of the entire case.
+                        Create ONE concise, coherent summary (4-8 sentences) of the entire case.
                         Preserve: case number, parties, key dates, decision, and outcome.
                         Structure: Background → Dispute → Decision → Consequences.`
                 },

@@ -26,7 +26,7 @@ export class UploadService {
         const caseLaw = await this.caseLawService.create(extractedFields);
 
         // 5. Remove the temp file
-        // await this.fileParserService.cleanupTempFile(filePath);
+        await this.fileParserService.cleanupTempFile(filePath);
 
         return caseLaw;
     }

@@ -29,7 +29,6 @@ export class CaseLawResolver {
     }
 
     //// Query by caseNumber + dateOfDecision (assumes unique)
-    // THOUGHTS:
     // I thought I might want to find documents based on something else than the id,
     // since the id doesnt say much about the data.
     // So i created this index and query - I assume it is a unique key so it only finds one.

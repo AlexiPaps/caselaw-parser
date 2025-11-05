@@ -15,8 +15,6 @@ import { UploadModule } from './upload/upload.module';
       autoSchemaFile: join(process.cwd(), 'src/schema.gql'),
       sortSchema: true,
       playground: true,
-      context: ({ req }) => ({ req }),
-      csrfPrevention: false,
     }),
     PrismaModule,
     CaseLawModule,
