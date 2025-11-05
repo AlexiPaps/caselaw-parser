@@ -12,9 +12,18 @@ export class CaseLawService {
         });
     }
 
-    async findAll() {
+    async findAll(params: { search?: string; sortBy?: string; sortOrder?: 'asc' | 'desc'; skip?: number; take?: number }) {
+        const { search, sortBy, sortOrder, skip, take } = params;
         return this.prisma.caseLaw.findMany({
-            orderBy: { createdAt: 'desc' }
+            where: search ? {
+                OR: [
+                    { title: { contains: search, mode: 'insensitive' } },
+                    { summary: { contains: search, mode: 'insensitive' } },
+                ],
+            } : undefined,
+            orderBy: sortBy ? { [sortBy]: sortOrder } : { dateOfDecision: 'desc' },
+            skip,
+            take,
         });
     }
 

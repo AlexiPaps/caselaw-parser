@@ -13,8 +13,14 @@ export class CaseLawResolver {
     }
 
     @Query(() => [CaseLaw], { name: 'caseLaws' })
-    findAll() {
-        return this.caseLawService.findAll();
+    async findAll(
+        @Args('search', { nullable: true }) search?: string,
+        @Args('sortBy', { nullable: true }) sortBy?: string,
+        @Args('sortOrder', { nullable: true, defaultValue: 'asc' }) sortOrder?: 'asc' | 'desc',
+        @Args('skip', { nullable: true, defaultValue: 0 }) skip?: number,
+        @Args('take', { nullable: true, defaultValue: 10 }) take?: number,
+    ) {
+        return this.caseLawService.findAll({ search, sortBy, sortOrder, skip, take });
     }
 
     @Query(() => CaseLaw, { name: 'caseLaw' })

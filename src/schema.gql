@@ -38,7 +38,7 @@ type Mutation {
 type Query {
   caseLaw(id: String!): CaseLaw!
   caseLawByCaseNumberAndDate(caseNumber: String!, dateOfDecision: String!): CaseLaw
-  caseLaws: [CaseLaw!]!
+  caseLaws(search: String, skip: Float = 0, sortBy: String, sortOrder: String = "asc", take: Float = 10): [CaseLaw!]!
 }
 
 """The `Upload` scalar type represents a file upload."""
