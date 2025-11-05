@@ -1,98 +1,155 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="120" alt="Nest Logo" /></a>
-</p>
+## ⚙️ Setup Instructions
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+Follow these steps to run the project locally and test the full workflow.
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg" alt="Donate us"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow" alt="Follow us on Twitter"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+### 🧱 Prerequisites
 
-## Description
+Make sure you have the following installed:
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+* **Node.js** (v18 or higher)
+* **Docker & Docker Compose**
+* **Git**
+* **OpenAI API Key**
 
-## Project setup
+---
+
+### 🚀 1. Clone the Repository and Install Dependencies
 
 ```bash
-$ npm install
+git clone https://github.com/AlexiPaps/caselaw-parser.git
+cd caselaw-parser
+npm install
 ```
 
-## Compile and run the project
+---
+
+### 🐳 2. Start the PostgreSQL Database
+
+Use Docker to spin up a local Postgres container:
 
 ```bash
-# development
-$ npm run start
-
-# watch mode
-$ npm run start:dev
-
-# production mode
-$ npm run start:prod
+docker compose up -d
 ```
 
-## Run tests
+This will run the database defined in the `docker-compose.yml`.
+
+---
+
+### ⚙️ 3. Configure Environment Variables
+
+Create a `.env` file in the project root:
 
 ```bash
-# unit tests
-$ npm run test
-
-# e2e tests
-$ npm run test:e2e
-
-# test coverage
-$ npm run test:cov
+DATABASE_URL="postgresql://postgres:postgres@localhost:5432/caselaw_db?schema=public"
+OPENAI_API_KEY="your-openai-api-key"
+PORT=3000
 ```
+---
 
-## Deployment
-
-When you're ready to deploy your NestJS application to production, there are some key steps you can take to ensure it runs as efficiently as possible. Check out the [deployment documentation](https://docs.nestjs.com/deployment) for more information.
-
-If you are looking for a cloud-based platform to deploy your NestJS application, check out [Mau](https://mau.nestjs.com), our official platform for deploying NestJS applications on AWS. Mau makes deployment straightforward and fast, requiring just a few simple steps:
+### 🗃️ 4. Run Prisma Migrations
 
 ```bash
-$ npm install -g @nestjs/mau
-$ mau deploy
+npx prisma migrate dev
 ```
 
-With Mau, you can deploy your application in just a few clicks, allowing you to focus on building features rather than managing infrastructure.
+This ensures your local database matches the schema.
 
-## Resources
+---
 
-Check out a few resources that may come in handy when working with NestJS:
+### 🧠 5. Start the NestJS GraphQL Server
 
-- Visit the [NestJS Documentation](https://docs.nestjs.com) to learn more about the framework.
-- For questions and support, please visit our [Discord channel](https://discord.gg/G7Qnnhy).
-- To dive deeper and get more hands-on experience, check out our official video [courses](https://courses.nestjs.com/).
-- Deploy your application to AWS with the help of [NestJS Mau](https://mau.nestjs.com) in just a few clicks.
-- Visualize your application graph and interact with the NestJS application in real-time using [NestJS Devtools](https://devtools.nestjs.com).
-- Need help with your project (part-time to full-time)? Check out our official [enterprise support](https://enterprise.nestjs.com).
-- To stay in the loop and get updates, follow us on [X](https://x.com/nestframework) and [LinkedIn](https://linkedin.com/company/nestjs).
-- Looking for a job, or have a job to offer? Check out our official [Jobs board](https://jobs.nestjs.com).
+```bash
+npm run start:dev
+```
 
-## Support
+Once running, open:
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+> [http://localhost:3000/graphql](http://localhost:3000/graphql)
 
-## Stay in touch
+To upload files to the server you can either use this simple frontend:
 
-- Author - [Kamil Myśliwiec](https://twitter.com/kammysliwiec)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+```bash
+git clone https://github.com/AlexiPaps/caselaw-upload.git
+cd caselaw-upload
+npm install
+npm run dev
+``` 
 
-## License
+Once running, open:
 
-Nest is [MIT licensed](https://github.com/nestjs/nest/blob/master/LICENSE).
+> [http://localhost:5173](http://localhost:5173)
+
+Or use some other API Client e.g. Postman.
+
+You can now upload `.pdf` or `.html` files, and the backend will process them with the AI service.
+
+---
+
+### 🧾 6. Testing the AI Processing
+
+After uploading a file, the service:
+
+1. Parses and splits the document into chunks.
+2. Sends chunks to the **OpenAI API**.
+3. Extracts structured metadata like `title`, `court`, `dateOfDecision` and `summary`.
+
+You can verify the results directly through the GraphQL Playground.
+
+---
+
+## ⚖️ Design Decisions and Trade-offs
+
+Throughout development, several design choices were made to balance simplicity and scalability:
+
+- NestJS + GraphQL – Chosen for its modular architecture and strong typing.
+
+- Prisma ORM – Type-safe interface to the database. The trade-off is slower startup and migration overhead compared to raw SQL.
+
+- Separate Base, Model, and DTO classes – Adds some duplication but improves maintainability, validation, and future extensibility (e.g., partial updates or admin-specific DTOs).
+
+- Text extraction of the documents rather than sending the actual files to the AI API.
+
+- Chunk-based AI Processing – Enables handling long documents within model limits but increases processing time and potential token costs.
+
+---
+
+## 🧩 Data Schema Structure & Management
+
+This project uses a **layered schema design** that integrates **Prisma**, **GraphQL**, and **NestJS DTOs** to maintain clean boundaries between database, API input, and API output.
+
+### Overview
+
+The data flow for a `CaseLaw` entity moves through several layers:
+
+```
+Client → GraphQL DTO → Service → Prisma Model → Database
+```
+
+Each layer has a distinct responsibility:
+
+| Layer | File Example | Description |
+|-------|---------------|-------------|
+| **Prisma Model** | `prisma/schema.prisma` | Defines the actual database schema and migrations. |
+| **GraphQL Base Model** | `caselaw/caselaw.base.ts` | Defines common GraphQL fields and validation rules. Used by both inputs and outputs. |
+| **GraphQL Input DTO** | `caselaw/dto/create-caselaw.input.ts` | Defines what the API accepts as input (e.g., when creating or updating records). |
+| **GraphQL Object Model** | `caselaw/caselaw.model.ts` | Defines what the API returns to clients (the response type). |
+
+---
+
+## 🛡️ Considerations Before Production
+
+Key considerations before going to production:
+- Apply rate limiting to prevent abuse.
+- Authentication and authorization to protect endpoints.
+- Store uploaded files in dedicated storage rather than local folder.
+- Add OCR for pdf files that are not text based.
+- Add retry logic and error handling for AI API requests.  
+- Implement caching for identical or repeated requests.  
+- Version prompts to ensure reproducibility of AI-driven extraction.
+- Configure regular backups.  
+- Add better error handling and logging.
+- Collect metrics for uload success/failure, AI latency and DB query performance.
+- Add unit tests, simulations for uploads and GraphQL mutations and automated test of the complete flow: Upload → AI → Database.
+- Caching repeated AI results
+
+---
